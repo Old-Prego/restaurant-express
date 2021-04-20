@@ -1,5 +1,6 @@
 const rButton = document.getElementById('rButton');
 
+
 rButton.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -15,6 +16,8 @@ rButton.addEventListener('click', (e) => {
         uniqID: rID,
     };
 
+    console.log(newReservation);
+
     fetch('/api/reservations', {
         method: 'POST',
         headers: {
@@ -25,5 +28,21 @@ rButton.addEventListener('click', (e) => {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
+            alert(`Adding Reservation Under: ${data.uniqID}`);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+    // fetch(`/api/reservations/`,{
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    // })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         console.log(data[0].uniqID);
+
+    //     });
 })
