@@ -3,6 +3,8 @@ const path = require('path');
 const http = require('http');
 const fs = require('fs');
 
+// indexjs();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -16,6 +18,8 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/reservations', (req, res) => res.sendFile(path.join(__dirname, 'reservation.html')));
 
 app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html')));
+
+app.get('/*.js', (req, res) => res.sendFile(path.join(__dirname, req.url.split('/')[1])));
 
 app.post('/api/reservations', (req, res) => {
     // req.body hosts is equal to the JSON post sent from the user
